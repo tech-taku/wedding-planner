@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: wedding_planner_production
-  username: wedding_planner
-  password: <%= ENV["WEDDING_PLANNER_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

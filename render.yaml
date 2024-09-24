@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: wedding-planner
+    env: ruby
+    plan: free
+    numInstances: 1
+    buildCommand: ./bin/render-build.sh
+    startCommand: bundle exec puma -C config/deploy/puma.rb
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: wedding-planner
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+databases:
+  - name: planner-db
+    plan: free
+    postgresMajorVersion: 16
