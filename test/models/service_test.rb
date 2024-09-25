@@ -40,4 +40,49 @@ class ServiceTest < ActiveSupport::TestCase
     @service.description = "The deription has been provided"
     assert @service.valid?
   end
+
+  test "requires a valid city input" do
+    @service = Service.new(
+      name: "Mr Brown the Dj",
+      description: "The best DJ in amapiano",
+      city: "",
+      province: "Harare",
+      country: "Zimbabwe"
+    )
+
+    assert_not @service.valid?
+
+    @service.city = "Harare"
+    assert @service.valid?
+  end
+
+  test "requires a province to be present" do
+    @service = Service.new(
+      name: "Mr Brown the Dj",
+      description: "The best DJ in amapiano",
+      city: "Harare",
+      province: "",
+      country: "Zimbabwe"
+    )
+
+    assert_not @service.valid?
+
+    @service.province = "Harare"
+    assert @service.valid?
+  end
+
+  test "requires a coutnry to be present" do
+    @service = Service.new(
+      name: "Mr Brown the Dj",
+      description: "The best DJ in amapiano",
+      city: "Harare",
+      province: "Harare",
+      country: ""
+    )
+
+    assert_not @service.valid?
+
+    @service.country = "Zimbabwe"
+    assert @service.valid?
+  end
 end
