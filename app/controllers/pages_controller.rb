@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  def home
+  def feed
     @services = Service.all
   end
 end
