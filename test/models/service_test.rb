@@ -6,6 +6,7 @@ class ServiceTest < ActiveSupport::TestCase
       name: "Master of Ceremonies Tich",
       description: "The best there is in officiatig a wedding",
       city: "Harare",
+      address_1: "3527 mandaza avenue, Belgravia",
       province: "Harare",
       country: "Zimbabwe"
     )
@@ -17,6 +18,7 @@ class ServiceTest < ActiveSupport::TestCase
       name: "",
       description: "I did not provide a name",
       city: "Harare",
+      address_1: "7408 East Old Highfield",
       province: "Harare",
       country: "Zimbabwe"
     )
@@ -31,6 +33,7 @@ class ServiceTest < ActiveSupport::TestCase
       name: "Master od cermeonies Tich",
       description: "",
       city: "Harare",
+      address_1: "90 Chitepo Street",
       province: "Harare",
       country: "Zimbabwe"
     )
@@ -46,6 +49,7 @@ class ServiceTest < ActiveSupport::TestCase
       name: "Mr Brown the Dj",
       description: "The best DJ in amapiano",
       city: "",
+      address_1: "89 Borrowdale Park Office, Borrowdale",
       province: "Harare",
       country: "Zimbabwe"
     )
@@ -61,6 +65,7 @@ class ServiceTest < ActiveSupport::TestCase
       name: "Mr Brown the Dj",
       description: "The best DJ in amapiano",
       city: "Harare",
+      address_1: "99 Jason Moyo Avenue",
       province: "",
       country: "Zimbabwe"
     )
@@ -71,11 +76,29 @@ class ServiceTest < ActiveSupport::TestCase
     assert @service.valid?
   end
 
-  test "requires a coutnry to be present" do
+  test "requires address 1 if not entered" do
     @service = Service.new(
       name: "Mr Brown the Dj",
       description: "The best DJ in amapiano",
       city: "Harare",
+      address_1: "",
+      province: "Harare",
+      country: "Zimbabwe"
+    )
+
+    assert_not @service.valid?
+
+    @service.address_1 = "3427 Phase 2B Granary Harare"
+    assert @service.valid?
+
+  end
+
+  test "requires a country to be present" do
+    @service = Service.new(
+      name: "Mr Brown the Dj",
+      description: "The best DJ in amapiano",
+      city: "Harare",
+      address_1: "10 Rochester Crescent",
       province: "Harare",
       country: ""
     )

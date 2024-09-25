@@ -1,2 +1,13 @@
-<h1>I think we can Actually start</h1>
-<p>Hey Leen so this is where we will be seeing changes</p>
+ <layout-column class="columns is-multiline mx-6"> 
+  <% @services.each do |service_item| %>
+      <div class="column is-one-third-desktop is-half-tablet" >
+        <div class="box">
+        <p> <%= service_item.name %></p>
+        <p> <%= service_item.description %></p>
+        <p> <%= service_item.address_1 %></p>
+        <p> <%= service_item.city %></p>
+        <p> <%= service_item.country %></p>
+        </div>
+      </div>
+  <% end %>
+</layout-column>
