@@ -45,6 +45,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Add faker gem for random string generation
+  gem "faker", :git => "https://github.com/faker-ruby/faker.git", :branch => "main"
 end
 
 group :development do
