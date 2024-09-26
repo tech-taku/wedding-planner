@@ -1,16 +1,15 @@
- <layout-column class="columns is-multiline mx-6"> 
+ <layout-column class="columns is-multiline m-auto px-6"> 
   <% @services.each do |service_item| %>
-      <div class="column is-one-fifth-desktop is-half-tablet" >
-        <div class="box">
-            <%= image_tag 'wedding.jpg', style: 'height: 200px, width: auto;' %>
-          <div>
-            <p> <%= service_item.name %></p>
+      <div class="column is-half-tablet is-one-quarter-desktop is-one-fifth-widescreen is-one-sixth-fullhd " >
+          <div class="image">
+            <%= image_tag 'wedding1.jpg', class: "card" %>
+          </div>
+          <div class ="mt-3">
+            <p> <strong><%= service_item.name %></strong></p>
             <p> <%= service_item.description %></p>
-            <p> <%= service_item.address_1 %></p>
-            <p> <%= service_item.city %></p>
+            <p> <%= service_item.address_1 %>, <%= service_item.city %> </p>
             <p> <%= service_item.country %></p>
           </div>
-        </div>
       </div>
   <% end %>
 </layout-column>
