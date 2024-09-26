@@ -7,7 +7,7 @@ class ServiceTest < ActiveSupport::TestCase
       description: "The best there is in officiatig a wedding",
       city: "Harare",
       address_1: "3527 mandaza avenue, Belgravia",
-      province: "Harare",
+      state: "Harare",
       country: "Zimbabwe"
     )
     assert @service.valid?
@@ -19,7 +19,7 @@ class ServiceTest < ActiveSupport::TestCase
       description: "I did not provide a name",
       city: "Harare",
       address_1: "7408 East Old Highfield",
-      province: "Harare",
+      state: "Harare",
       country: "Zimbabwe"
     )
     assert_not @service.valid?
@@ -27,14 +27,14 @@ class ServiceTest < ActiveSupport::TestCase
     @service.name = "Tinotenda the dancer"
     assert @service.valid?
   end
-  
+
   test "requires a description" do
     @service = Service.new(
       name: "Master od cermeonies Tich",
       description: "",
       city: "Harare",
       address_1: "90 Chitepo Street",
-      province: "Harare",
+      state: "Harare",
       country: "Zimbabwe"
     )
 
@@ -50,7 +50,7 @@ class ServiceTest < ActiveSupport::TestCase
       description: "The best DJ in amapiano",
       city: "",
       address_1: "89 Borrowdale Park Office, Borrowdale",
-      province: "Harare",
+      state: "Harare",
       country: "Zimbabwe"
     )
 
@@ -60,19 +60,19 @@ class ServiceTest < ActiveSupport::TestCase
     assert @service.valid?
   end
 
-  test "requires a province to be present" do
+  test "requires a state to be present" do
     @service = Service.new(
       name: "Mr Brown the Dj",
       description: "The best DJ in amapiano",
       city: "Harare",
       address_1: "99 Jason Moyo Avenue",
-      province: "",
+      state: "",
       country: "Zimbabwe"
     )
 
     assert_not @service.valid?
 
-    @service.province = "Harare"
+    @service.state = "Harare"
     assert @service.valid?
   end
 
@@ -82,7 +82,7 @@ class ServiceTest < ActiveSupport::TestCase
       description: "The best DJ in amapiano",
       city: "Harare",
       address_1: "",
-      province: "Harare",
+      state: "Harare",
       country: "Zimbabwe"
     )
 
@@ -90,7 +90,6 @@ class ServiceTest < ActiveSupport::TestCase
 
     @service.address_1 = "3427 Phase 2B Granary Harare"
     assert @service.valid?
-
   end
 
   test "requires a country to be present" do
@@ -99,7 +98,7 @@ class ServiceTest < ActiveSupport::TestCase
       description: "The best DJ in amapiano",
       city: "Harare",
       address_1: "10 Rochester Crescent",
-      province: "Harare",
+      state: "Harare",
       country: ""
     )
 
@@ -107,5 +106,24 @@ class ServiceTest < ActiveSupport::TestCase
 
     @service.country = "Zimbabwe"
     assert @service.valid?
+  end
+
+  test "latitude and longitude are created after saving the address" do
+    @service = Service.create(
+      name: "First Mutual Building",
+      description: "CBD luxurious venue",
+      city: "Harare",
+      address_1: "99 Jason Moyo Ave",
+      state: "Harare",
+      country: "Zimbabwe"
+    )
+
+    assert @service.persisted?
+
+    assert_not_nil @service.latitude
+    assert_not_nil @service.longitude
+
+    assert_equal @service.latitude, -17.8308253
+    assert_equal @service.longitude, 31.0540776408319
   end
 end
