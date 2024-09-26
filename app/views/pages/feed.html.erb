@@ -1,12 +1,15 @@
  <layout-column class="columns is-multiline mx-6"> 
   <% @services.each do |service_item| %>
-      <div class="column is-one-third-desktop is-half-tablet" >
+      <div class="column is-one-fifth-desktop is-half-tablet" >
         <div class="box">
-        <p> <%= service_item.name %></p>
-        <p> <%= service_item.description %></p>
-        <p> <%= service_item.address_1 %></p>
-        <p> <%= service_item.city %></p>
-        <p> <%= service_item.country %></p>
+            <%= image_tag 'wedding.jpg', style: 'height: 200px, width: auto;' %>
+          <div>
+            <p> <%= service_item.name %></p>
+            <p> <%= service_item.description %></p>
+            <p> <%= service_item.address_1 %></p>
+            <p> <%= service_item.city %></p>
+            <p> <%= service_item.country %></p>
+          </div>
         </div>
       </div>
   <% end %>
